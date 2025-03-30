@@ -1,0 +1,13 @@
+name: getLogin
+author: "KRUKCODE"
+version: '${project.version}'
+main: pl.krukcode.getLogin.Main
+api-version: '1.18'
+commands:
+  login:
+  register:
+  changepass:
+  getLogin:
+permissions:
+  getLogin.admin:
+    default: op
