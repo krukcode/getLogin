@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bambusmc-login.iml" filepath="$PROJECT_DIR$/bambusmc-login.iml" />
       <module fileurl="file://$PROJECT_DIR$/getLogin.iml" filepath="$PROJECT_DIR$/getLogin.iml" />
     </modules>
   </component>

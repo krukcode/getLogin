@@ -23,13 +23,13 @@ public class Login implements CommandExecutor {
         pd = PlayerData.getInstance();
     }
 
-    @SuppressWarnings("static-access")
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean onCommand(CommandSender sender, Command arg1, String lab, String[] args) {
         Player p = (Player) sender;
         UUID uuid = p.getUniqueId();
 
-        if(onJoin.loggedIn.get(uuid) == false) {
+        if(!onJoin.loggedIn.get(uuid)) {
             if (args.length == 1) {
                 if (pd.getData().getString(uuid + ".pass") != null) {
                     String pass = args[0];

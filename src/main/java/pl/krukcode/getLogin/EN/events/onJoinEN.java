@@ -5,8 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import pl.krukcode.Util.Util;
 import pl.krukcode.getLogin.Main;
-import pl.krukcode.getLogin.Util;
 import pl.krukcode.getLogin.Data.PlayerData;
 
 import java.util.HashMap;
@@ -15,11 +15,10 @@ import java.util.UUID;
 
 public class onJoinEN implements Listener {
 
-    public static Map<UUID, Boolean> loggedIn = new HashMap<UUID, Boolean>();
-    public static Map<UUID, Boolean> stop = new HashMap<UUID, Boolean>();
+    public static Map<UUID, Boolean> loggedIn = new HashMap<>();
+    public static Map<UUID, Boolean> stop = new HashMap<>();
     PlayerData pd;
 
-    @SuppressWarnings("static-access")
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();

@@ -5,9 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pl.krukcode.Util.Util;
 import pl.krukcode.getLogin.Main;
 import pl.krukcode.getLogin.PL.events.onJoin;
-import pl.krukcode.getLogin.Util;
 import pl.krukcode.getLogin.Data.PlayerData;
 
 import java.util.UUID;
@@ -24,8 +24,8 @@ public class Register implements CommandExecutor {
         pd = PlayerData.getInstance();
     }
 
-    @SuppressWarnings("static-access")
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean onCommand(CommandSender sender, Command arg1, String lab, String[] args) {
         Player p = (Player) sender;
         UUID uuid = p.getUniqueId();
@@ -40,6 +40,7 @@ public class Register implements CommandExecutor {
 
                 if(args[0].equalsIgnoreCase(args[1])) {
                     pd.getData().set(uuid + ".pass", pass1);
+                    pd.getData().set(uuid + ".autologin", "NO");
                     pd.saveData();
 
                     onJoin.loggedIn.put(uuid, true);

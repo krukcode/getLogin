@@ -22,8 +22,8 @@ public class ChangePass implements CommandExecutor {
         pd = PlayerData.getInstance();
     }
 
-    @SuppressWarnings("static-access")
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean onCommand(CommandSender sender, Command arg1, String lab, String[] args) {
         Player p = (Player) sender;
         UUID uuid = p.getUniqueId();

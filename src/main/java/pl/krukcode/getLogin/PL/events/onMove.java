@@ -18,7 +18,7 @@ public class onMove implements Listener {
         UUID uuid = p.getUniqueId();
         pd = PlayerData.getInstance();
 
-        if(!onJoin.loggedIn.get(uuid)) {
+        if(onJoin.loggedIn.get(uuid).equals(false)) {
             if(pd.getData().getString(uuid + ".pass") == null) {
                 e.setCancelled(true);
                 p.sendMessage("§7Aby to zrobić, najpierw zarejestruj się się!");

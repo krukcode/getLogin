@@ -2,6 +2,8 @@ package pl.krukcode.getLogin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 // | EN |
+import pl.krukcode.Util.Util;
+import pl.krukcode.getLogin.Data.Languages;
 import pl.krukcode.getLogin.EN.cmds.admin.AdminCommandsEN;
 import pl.krukcode.getLogin.EN.cmds.user.ChangePassEN;
 import pl.krukcode.getLogin.EN.cmds.user.LoginEN;
@@ -19,10 +21,7 @@ import pl.krukcode.getLogin.PL.events.onChat;
 import pl.krukcode.getLogin.PL.events.onCommand;
 import pl.krukcode.getLogin.PL.events.onJoin;
 import pl.krukcode.getLogin.PL.events.onMove;
-// | PL |
 import pl.krukcode.getLogin.Data.PlayerData;
-
-import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
@@ -35,7 +34,9 @@ public final class Main extends JavaPlugin {
         Util.setupConfig(main);
         Util.Setup(main, "a", Util.getStringFromConfig("language"));
         pd.setup(this);
-        if (Util.getStringFromConfig("language").equals("PL")) {
+        Util.setLanguage(Util.getStringFromConfig("language"));
+        if (Util.getLanguage().equals(Languages.PL)) {
+            Util.setLanguage("PL");
             new ChangePass(this);
             new Login(this);
             new Register(this);
@@ -56,15 +57,14 @@ public final class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new onChatEN(), this);
             getServer().getPluginManager().registerEvents(new onCommandEN(), this);
         }
-        Util.setStatus("LOADED", Objects.requireNonNull(getConfig().getString("language")));
+        Util.setStatus("LOADED");
     }
 
     public void onDisable() {
         reloadConfig();
-        Util.setStatus("DISABLED", Objects.requireNonNull(getConfig().getString("language")));
+        Util.setStatus("DISABLED");
     }
 
     public static Main getMain() { return main; }
-    public static Main getInstance() { return main; }
     public Main() { pd = PlayerData.getInstance(); }
 }

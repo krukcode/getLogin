@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import pl.krukcode.Util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,20 +26,24 @@ public class PlayerData {
 
     public void setup(Plugin p) {
         if(!p.getDataFolder().exists()) {
-            p.getDataFolder().mkdir();
+            if (!p.getDataFolder().mkdir()) {
+                Util.sendToConsole("DATA FOLDER NOT FOUND!");
+            }
         }
 
         File path = new File(p.getDataFolder() + File.separator + "/data");
-        rfile = new File(path, String.valueOf(File.separator + "data.yml"));
+        rfile = new File(path, File.separator + "data.yml");
         if(!rfile.exists()) {
             try {
-                path.mkdirs();
-                rfile.createNewFile();
+                boolean mkdirs = path.mkdirs();
+                boolean newFile = rfile.createNewFile();
+                if (!mkdirs && newFile) { Bukkit.getServer().getLogger().severe(ChatColor.RED + "Cannot create file data.yml!"); }
             } catch(IOException e) {
                 Bukkit.getServer().getLogger().severe(ChatColor.RED + "Cannot create file data.yml!");
             }
         }
         data = YamlConfiguration.loadConfiguration(rfile);
+
     }
 
     public FileConfiguration getData() {
